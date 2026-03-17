@@ -134,7 +134,9 @@ export default function ResumePage() {
 
       {/* RESUME PREVIEW */}
 
-      <div className="bg-white border rounded-lg p-8 shadow-sm space-y-6">
+      <div 
+        ref={resumeRef}
+        className="bg-white border rounded-lg p-8 shadow-sm space-y-6">
 
         <div>
           <h2 className="text-2xl font-bold">
@@ -187,6 +189,12 @@ export default function ResumePage() {
         </div>
 
       </div>
+      <button
+        onClick={downloadPDF}
+        className="px-4 py-2 bg-blue-600 text-white rounded"
+      >
+        Download PDF
+      </button>
 
     </div>
   )
