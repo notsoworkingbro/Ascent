@@ -7,6 +7,11 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 
+import { useRef } from "react"
+import html2canvas from "html2canvas"
+import jsPDF from "jspdf"
+
+
 export default function ResumePage() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -15,6 +20,25 @@ export default function ResumePage() {
   const [experience, setExperience] = useState("")
   const [education, setEducation] = useState("")
   const [certificates, setCertificates] = useState("")
+
+  const resumeRef = useRef<HTMLDivElement | null>(null)
+
+  const downloadPDF = async () => {
+    if (!resumeRef.current) return
+
+    const canvas = await html2canvas(resumeRef.current)
+
+    const imgData = canvas.toDataURL("image/png")
+
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "px",
+      format: [canvas.width, canvas.height],
+    })
+
+    pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height)
+    pdf.save("resume.pdf")
+  }
 
   return (
     <div className="p-8 grid md:grid-cols-2 gap-10">
