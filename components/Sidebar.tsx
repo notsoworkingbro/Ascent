@@ -34,9 +34,6 @@ export default function Sidebar() {
         <nav className="flex flex-col gap-4">
           <Link href="/">Home</Link>
           <Link href="/resume">Resume Builder</Link>
-          <Link href="/whiteboard">Whiteboard</Link>
-          <Link href="/subscription">Subscription</Link>
-          <Link href="/settings">Settings</Link>
         </nav>
       </aside>
 
