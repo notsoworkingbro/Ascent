@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
+import type {ResumeData} from "@/lib/types"
+
 
 import { useRef } from "react"
 import html2canvas from "html2canvas"
@@ -20,6 +22,15 @@ export default function ResumePage() {
   const [experience, setExperience] = useState("")
   const [education, setEducation] = useState("")
   const [certificates, setCertificates] = useState("")
+
+  const [data, setData] = useState<ResumeData>({
+    name: "",
+    email: "",
+    skills: "",
+    experience: "",
+    education: "",
+    certificates: "",
+  })
 
   const resumeRef = useRef<HTMLDivElement | null>(null)
 
