@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 import type {ResumeData} from "@/lib/types"
 
+import EditorPanel from "@/components/resume/EditorPanel"
+
 
 import { useRef } from "react"
 import html2canvas from "html2canvas"
@@ -57,92 +59,8 @@ export default function ResumePage() {
     <div className="p-8 grid md:grid-cols-2 gap-10">
 
       {/* FORM */}
-      <div className="space-y-6">
-
-        <h1 className="text-3xl font-bold">Resume Builder</h1>
-
-        <Separator />
-
-        {/* BASIC INFO */}
-
-        <div className="space-y-2">
-          <Label htmlFor="name">Full Name</Label>
-          <Input
-            id="name"
-            placeholder="Juan Dela Cruz"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            placeholder="juan@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="phone">Phone</Label>
-          <Input
-            id="phone"
-            placeholder="123-456-7890"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </div>
-
-        <Separator />
-
-        {/* SKILLS */}
-
-        <div className="space-y-2">
-          <Label>Skills</Label>
-          <Textarea
-            placeholder="React, TypeScript, Node.js"
-            value={skills}
-            onChange={(e) => setSkills(e.target.value)}
-          />
-        </div>
-
-        {/* EXPERIENCE */}
-
-        <div className="space-y-2">
-          <Label>Experience</Label>
-          <Textarea
-            placeholder="Describe your work experience"
-            value={experience}
-            onChange={(e) => setExperience(e.target.value)}
-          />
-        </div>
-
-        <Separator />
-
-        {/* EDUCATION */}
-
-        <div className="space-y-2">
-          <Label>Education</Label>
-          <Textarea
-            placeholder="BS Computer Science - University Name (2020-2024)"
-            value={education}
-            onChange={(e) => setEducation(e.target.value)}
-          />
-        </div>
-
-        {/* CERTIFICATES */}
-
-        <div className="space-y-2">
-          <Label>Certificates</Label>
-          <Textarea
-            placeholder="AWS Certified Developer, Google Cloud Fundamentals"
-            value={certificates}
-            onChange={(e) => setCertificates(e.target.value)}
-          />
-        </div>
-
+      <div className="w-1/3 border-r p-6 overflow-y-auto">
+        <EditorPanel data={data} setData={setData} />
       </div>
 
       {/* RESUME PREVIEW */}
