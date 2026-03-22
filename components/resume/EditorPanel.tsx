@@ -4,12 +4,24 @@ import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 import { ResumeData } from "@/lib/types"
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 export default function EditorPanel({
   data,
   setData,
+  template,
+  setTemplate,
 }: {
   data: ResumeData
   setData: (data: ResumeData) => void
+  template: string
+  setTemplate: (value: string) => void
 }) {
   return (
     <div className="space-y-4">
@@ -17,6 +29,25 @@ export default function EditorPanel({
       <h2 className="text-xl font-bold">Edit Resume</h2>
       <Separator />
 
+      {/* TEMPLATE DROPDOWN */}
+      <div className="space-y-2">
+        <Label>Choose Template</Label>
+
+        <Select value={template} onValueChange={setTemplate}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select template" />
+          </SelectTrigger>
+
+          <SelectContent>
+            <SelectItem value="modern">Modern</SelectItem>
+            <SelectItem value="minimal">Minimal</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <Separator />
+
+      {/* FORM FIELDS */}
       <div>
         <Label>Name</Label>
         <Input
