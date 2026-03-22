@@ -40,17 +40,17 @@ export default function ResumePage() {
     const pdf = new jsPDF({
       orientation: "portrait",
       unit: "px",
-      format: [canvas.width, canvas.height],
+      format: [794, 1123], // A4 size
     })
 
-    pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height)
+    pdf.addImage(imgData, "PNG", 0, 0, 794, 1123)
     pdf.save("resume.pdf")
   }
 
   return (
     <div className="flex border h-screen">
 
-      {/* LEFT: Editor */}
+      {/* Editor */}
       <div className="w-1/3 border border-gray-300 h-full">
         <div className="p-6 h-full overflow-y-auto">
           <EditorPanel data={data} setData={setData} template={template} setTemplate={setTemplate} />
@@ -66,11 +66,9 @@ export default function ResumePage() {
         </div>
       </div>
       
-
-      {/* RIGHT: Preview + Templates */}
+      {/* Preview */}
       <div className="flex-1 flex flex-col h-full">
 
-        {/* Preview */}
         <div className="flex-1 p-6 overflow-auto bg-gray-100">
           <PreviewPanel data={data} template={template} resumeRef={resumeRef}/>
         </div>
