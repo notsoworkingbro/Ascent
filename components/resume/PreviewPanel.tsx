@@ -23,7 +23,7 @@ export default function PreviewPanel({
 
   return (
     <div className="flex justify-center">
-      <div ref={resumeRef} className="w-[794px] min-h-[1123px] bg-white shadow p-6">
+      <div ref={resumeRef} className="w-[816px] min-h-[1056px] overflow-hidden bg-white shadow p-6">
         <Component data={data} />
       </div>
     </div>
