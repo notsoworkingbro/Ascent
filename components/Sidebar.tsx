@@ -23,10 +23,14 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         className={`
-        fixed md:static top-0 left-0 h-screen w-64 bg-gray-900 text-white p-6
-        transform transition-transform duration-300
-        ${open ? "translate-x-0" : "-translate-x-full"}
-        md:translate-x-0
+          fixed md:sticky md:top-0
+          top-0 left-0
+          w-64
+          h-full min-h-screen
+          bg-gray-900 text-white p-6
+          transform transition-transform duration-300
+          ${open ? "translate-x-0" : "-translate-x-full"}
+          md:translate-x-0
         `}
       >
         <h1 className="text-xl font-bold mb-6">Dashboard</h1>
