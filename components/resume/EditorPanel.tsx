@@ -72,6 +72,38 @@ export default function EditorPanel({
         />
       </div>
 
+      {/* SKILLS */}
+      <div>
+        <Label>Skills</Label>
+
+        {data.skills.map((skill, index) => (
+          <Input
+            key={index}
+            className="mb-2"
+            placeholder="Enter skill"
+            value={skill}
+            onChange={(e) => {
+              const updated = [...data.skills]
+              updated[index] = e.target.value
+              setData({ ...data, skills: updated })
+            }}
+          />
+        ))}
+
+        <button
+          onClick={() =>
+            setData({
+              ...data,
+              skills: [...data.skills, ""],
+            })
+          }
+          className="px-3 py-1 bg-blue-500 text-white rounded"
+        >
+          + Add Skill
+        </button>
+      </div>
+
+      {/* EXPERIENCE */}
       <div>
         <Label>Experience</Label>
         <Textarea

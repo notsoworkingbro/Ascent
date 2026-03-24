@@ -19,10 +19,17 @@ export default function ResumePage() {
   const [data, setData] = useState<ResumeData>({
     name: "",
     email: "",
-    skills: "",
-    experience: "",
-    education: "",
-    certificates: "",
+    address: "",
+    phone: "",
+    linkedin: "",
+    portfolio: "",
+    github: "",
+    summary: "",
+
+    skills: [],
+    experience: [],
+    education: [],
+    certificates: [],
   })
 
   const resumeRef = useRef<HTMLDivElement | null>(null)
@@ -35,15 +42,33 @@ export default function ResumePage() {
       useCORS: true,
     })
 
-    const imgData = canvas.toDataURL("image/png")
+    const imgWidth = 816
+    const pageHeight = 1056
+
+    const imgHeight = (canvas.height * imgWidth) / canvas.width
 
     const pdf = new jsPDF({
-      orientation: "portrait",
       unit: "px",
-      format: [794, 1123], // A4 size
+      format: [imgWidth, pageHeight],
     })
 
-    pdf.addImage(imgData, "PNG", 0, 0, 794, 1123)
+    let position = 0
+    let remainingHeight = imgHeight
+
+    const imgData = canvas.toDataURL("image/png")
+
+    // First page
+    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight)
+    remainingHeight -= pageHeight
+
+    // Add more pages if needed
+    while (remainingHeight > 0) {
+      position -= pageHeight
+      pdf.addPage()
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight)
+      remainingHeight -= pageHeight
+    }
+
     pdf.save("resume.pdf")
   }
 
