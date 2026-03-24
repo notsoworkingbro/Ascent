@@ -133,17 +133,27 @@ export default function EditorPanel({
         <Label>Skills</Label>
 
         {data.skills.map((skill, index) => (
-          <Input
-            key={index}
-            className="mb-2"
-            placeholder="Enter skill"
-            value={skill}
-            onChange={(e) => {
-              const updated = [...data.skills]
-              updated[index] = e.target.value
-              setData({ ...data, skills: updated })
-            }}
-          />
+          <div key={index} className="flex gap-2 mb-2">
+            <Input
+              placeholder="Enter skill"
+              value={skill}
+              onChange={(e) => {
+                const updated = [...data.skills]
+                updated[index] = e.target.value
+                setData({ ...data, skills: updated })
+              }}
+            />
+
+            <button
+              onClick={() => {
+                const updated = data.skills.filter((_, i) => i !== index)
+                setData({ ...data, skills: updated })
+              }}
+              className="px-2 bg-red-500 text-white rounded"
+            >
+              Trushhhh
+            </button>
+          </div>
         ))}
 
         <button
